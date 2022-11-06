@@ -58,7 +58,7 @@
                 <tr>
                     <th>#</th>
                     <th>Title</th>
-                    <th>User Id</th>
+                    <th>Username</th>
                     <th>Category</th>
                     <th>Created At</th>
                     <th></th>
@@ -69,10 +69,10 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ \Illuminate\Support\Str::limit($item->title, 50, $end='...') }}</td>
-                        <td>1</td>
-                        <td>{{ $item->category->name }}</td>
+                        <td><a href="/user/{{ $item->user->id }}">{{ $item->user->username }}</a></td>
+                        <td><a href="/category/{{ $item->category->slug }}">{{ $item->category->name }}</a></td>
                         <td>{{ $item->created_at->diffForHumans() }}</td>
-                        <td><a href="#" class="primary"><span class="material-symbols-sharp">visibility</span></a></td>
+                        <td><a href="/topic/{{ $item->slug }}" class="primary"><span class="material-symbols-sharp">visibility</span></a></td>
                     </tr>
                 @endforeach
             </tbody>

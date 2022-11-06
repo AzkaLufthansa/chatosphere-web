@@ -7,6 +7,7 @@ use App\Models\Topic;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class TopicController extends Controller
 {
@@ -46,12 +47,11 @@ class TopicController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required',
+            'slug' => 'required|unique:topics',
             'category_id' => 'required',
             'content' => 'required',
         ]);
 
-        $slug = strtolower($validatedData['title']);
-        $validatedData['slug'] = str_replace(' ', '-', $slug);
         $validatedData['user_id'] = Auth::user()->id;
 
         Topic::create($validatedData);
@@ -65,9 +65,12 @@ class TopicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Topic $topic)
     {
-        //
+        return view('dashboard.topic.detail', [
+            'title' => 'Detail Topic',
+            'topic' => $topic
+        ]);
     }
 
     /**
@@ -94,14 +97,17 @@ class TopicController extends Controller
      */
     public function update(Request $request, Topic $topic)
     {
-        $validatedData = $request->validate([
+        $rules = [
             'title' => 'required',
             'category_id' => 'required',
             'content' => 'required',
-        ]);
+        ];
 
-        $slug = strtolower($validatedData['title']);
-        $validatedData['slug'] = str_replace(' ', '-', $slug);
+        if($request->slug !== $topic->slug) {
+            $rules['slug'] = 'required|unique:topics';
+        }
+
+        $validatedData = $request->validate($rules);
 
         Topic::where('slug', $topic->slug)->update($validatedData);
         Alert::success('Success', 'You\'ve Successfully updated data!');
@@ -119,5 +125,11 @@ class TopicController extends Controller
         Topic::destroy($topic->id);
         Alert::success('Success', 'You\'ve Successfully deleted data!');
         return redirect('/topic');
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Topic::class, 'slug', $request->title);
+        return response()->json(['slug' => $slug]);
     }
 }

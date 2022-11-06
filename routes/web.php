@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
         ]);
     });
     
+    Route::get('/topic/checkSlug', [TopicController::class, 'checkSlug']);
     Route::resource('topic', TopicController::class);
     Route::resource('user', UserController::class);
     Route::resource('category', CategoryController::class);

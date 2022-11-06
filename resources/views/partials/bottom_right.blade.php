@@ -2,29 +2,23 @@
     <h2>Recent Updates</h2>
     <div class="updates">
         <div class="update">
-            <div class="profile-photo">
-                <img src="/images/profile-2.jpg">
-            </div>
+            <img src="/images/profile-2.jpg" class="profile-photo">
             <div class="message">
-                <p><b>Mike Tyson</b> receive his order of Night lion tech GPS drone.</p>
+                <p><b>Iwan Tyson</b> receive his order of Night lion tech GPS drone.</p>
                 <small class="text-muted">2 Minutes Ago</small>
             </div>
         </div>
         <div class="update">
-            <div class="profile-photo">
-                <img src="/images/profile-3.jpg">
-            </div>
+            <img src="/images/profile-3.jpg" class="profile-photo">
             <div class="message">
-                <p><b>Mike Tyson</b> receive his order of Night lion tech GPS drone.</p>
+                <p><b>Gus Samsuri</b> receive his order of Night lion tech GPS drone.</p>
                 <small class="text-muted">2 Minutes Ago</small>
             </div>
         </div>
         <div class="update">
-            <div class="profile-photo">
-                <img src="/images/profile-4.jpg">
-            </div>
+            <img src="/images/profile-4.jpg" class="profile-photo">
             <div class="message">
-                <p><b>Mike Tyson</b> receive his order of Night lion tech GPS drone.</p>
+                <p><b>Silpia</b> receive his order of Night lion tech GPS drone.</p>
                 <small class="text-muted">2 Minutes Ago</small>
             </div>
         </div>
@@ -37,9 +31,7 @@
         @foreach ($recent_user as $item)
             <div class="item online">
                 <div class="">
-                    <div class="profile-photo">
-                        <img src="{{ asset('storage/' . $item->image) }}" style="object-fit: cover">
-                    </div>
+                    <img src="{{ asset('storage/' . $item->image) }}" class="profile-photo">
                 </div>
                 <div class="right">
                     <div class="info">

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatosphere | {{ $title }}</title>
+    <link rel="icon" type="image/x-icon" href="/images/chatosphere_logo.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
     {{-- My CSS --}}
     @yield('css')
@@ -26,7 +27,7 @@
         {{-- RIGHT --}}
         @yield('right')
     </div>
-
+    
     <script src="js/script.js"></script>
 </body>
 </html>

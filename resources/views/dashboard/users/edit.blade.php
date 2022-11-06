@@ -6,7 +6,7 @@
 
 @section('main')
     <div class="header">
-        <h1>Add User</h1>
+        <h1>Edit User</h1>
         <div class="user-profile">
             @include('partials.top_user')
         </div>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="button-group">
                     <a href="/user">Back</a>
-                    <button type="submit">Add</button>
+                    <button type="submit">Edit</button>
                 </div>
             </form>
         </div>

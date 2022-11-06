@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         return view('dashboard.users.users', [
             'title' => 'Users',
-            'users' => User::all()
+            'users' => User::latest()->get()
         ]);
     }
 
@@ -66,9 +66,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('dashboard.users.detail', [
+            'title' => 'Detail User',
+            'user' => $user
+        ]);
     }
 
     /**

@@ -6,7 +6,7 @@
 
 @section('main')
     <div class="header">
-        <h1>Add Topic</h1>
+        <h1>Edit Topic</h1>
         <div class="user-profile">
             @include('partials.top_user')
         </div>
@@ -21,6 +21,15 @@
                     <label for="title" class="label-form">Title</label><br>
                     <input type="text" name="title" id="title" class="input-form" value="{{ old('title', $topic->title) }}">
                     @error('title')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="slug" class="label-form">Slug</label><br>
+                    <input type="text" name="slug" id="slug" class="input-form" value="{{ old('slug', $topic->slug) }}">
+                    @error('slug')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -56,9 +65,21 @@
                 </div>
                 <div class="button-group">
                     <a href="/topic">Back</a>
-                    <button type="submit">Add</button>
+                    <button type="submit">Edit</button>
                 </div>
             </form>
         </div>
     </div>
+
+    
+    <script>
+        const title = document.querySelector('#title');
+        const slug = document.querySelector('#slug');
+
+        title.addEventListener('change', function() {
+            fetch('/topic/checkSlug?title=' + title.value)
+                .then(response => response.json())
+                .then(data => slug.value = data.slug)
+        });
+    </script>
 @endsection
