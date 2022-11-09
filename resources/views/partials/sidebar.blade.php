@@ -34,10 +34,6 @@
             <span class="material-symbols-sharp">settings</span>
             <h3>Settings</h3>
         </a>
-        <a href="#">
-            <span class="material-symbols-sharp">add</span>
-            <h3>Add Menu</h3>
-        </a>
         <form action="/logout" method="POST">
             @csrf
             <button type="submit" onclick="return confirm('Are you sure to logout?')">

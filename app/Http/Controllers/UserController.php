@@ -114,7 +114,7 @@ class UserController extends Controller
 
         $validatedData = $request->validate($rules);
 
-        Storage::delete($user->images);
+        Storage::delete($user->image);
         $validatedData['image'] = $request->file('image')->store('user_image');
         User::find($user->id)->update($validatedData);
         Alert::success('Success', 'You\'ve Successfully updated data!');

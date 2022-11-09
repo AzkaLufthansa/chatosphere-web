@@ -8,6 +8,8 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Contracts\Cache\Store;
+use Illuminate\Support\Facades\Storage;
 
 class TopicController extends Controller
 {
@@ -45,13 +47,21 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $rules = [
             'title' => 'required',
             'slug' => 'required|unique:topics',
             'category_id' => 'required',
             'content' => 'required',
-        ]);
+        ];
 
+        if($request->file('image')) {
+            $rules['image'] = 'image|file';
+        }
+
+        $validatedData = $request->validate($rules);
+        if($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('topic_image');
+        }
         $validatedData['user_id'] = Auth::user()->id;
 
         Topic::create($validatedData);
@@ -107,8 +117,18 @@ class TopicController extends Controller
             $rules['slug'] = 'required|unique:topics';
         }
 
-        $validatedData = $request->validate($rules);
+        if($request->file('image')) {
+            $rules['image'] = 'image|file';
+        }
 
+        $validatedData = $request->validate($rules);
+        if($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('topic_image');
+            if($topic->image) {
+                Storage::delete($topic->image);
+            }
+        }
+        
         Topic::where('slug', $topic->slug)->update($validatedData);
         Alert::success('Success', 'You\'ve Successfully updated data!');
         return redirect('/topic');
@@ -122,6 +142,7 @@ class TopicController extends Controller
      */
     public function destroy(Topic $topic)
     {
+        Storage::delete($topic->image);
         Topic::destroy($topic->id);
         Alert::success('Success', 'You\'ve Successfully deleted data!');
         return redirect('/topic');

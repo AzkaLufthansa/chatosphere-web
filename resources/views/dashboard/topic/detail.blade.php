@@ -29,8 +29,11 @@
                     </form>
                 </div>
             </div>
-            <p class="text-muted author" style="margin-bottom: 1.7rem">By <a href="/user/{{ $topic->user->id }}">{{ $topic->user->name }}</a> in <a href="/category/{{ $topic->category->slug }}">{{ $topic->category->name }}</a></p>
-            <p class="topic-content">{!! $topic->content !!}</p>
+            <p class="text-muted author">By <a href="/user/{{ $topic->user->id }}">{{ $topic->user->name }}</a> in <a href="/category/{{ $topic->category->slug }}">{{ $topic->category->name }}</a></p>
+            @if ($topic->image)
+                <div style="margin-top: 1.7rem"><img src="{{ asset('storage/' . $topic->image) }}" class="topic-image""></div>
+            @endif
+            <p class="topic-content" style="margin-top: 1.7rem">{!! $topic->content !!}</p>
         </div>
     </div>
 @endsection

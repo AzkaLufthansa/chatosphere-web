@@ -14,7 +14,7 @@
 
     <div class="recent-orders">
         <div class="form-card">
-            <form action="/topic/{{ $topic->slug }}" method="POST">
+            <form action="/topic/{{ $topic->slug }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="form-group">
@@ -40,14 +40,23 @@
                     <select name="category_id" id="category_id" class="input-form">
                         <option value="">-- Select Category --</option>
                         @foreach ($categories as $item)
-                            @if (old('category_id', $topic->category_id) == $item->id)
-                                <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
-                            @else
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                            @endif
+                        @if (old('category_id', $topic->category_id) == $item->id)
+                        <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
+                        @else
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endif
                         @endforeach
                     </select>
                     @error('category_id')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="image" class="label-form">Image</label><br>
+                    <input type="file" name="image" id="image" class="input-form">
+                    @error('image')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>

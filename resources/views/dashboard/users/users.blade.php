@@ -17,7 +17,17 @@
     <div class="recent-orders">
         <h2>Users Data</h2>
 
-        <a href="/user/create" class="add-button">Add User</a>
+        <div style="display: flex; justify-content: space-between; align-items: center">
+            <div>
+                <a href="/user/create" class="add-button">Add User</a>
+            </div>
+            <div>
+                <form action="#">
+                    <input type="text" class="search-input" placeholder="Enter keyword...">
+                    <button class="add-button">Search</button>
+                </form>
+            </div>
+        </div>
 
         <div class="table-wrapper">
             <table cellspacing="20">
@@ -25,7 +35,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th width="250">Name</th>
+                            <th width="200">Name</th>
                             <th width="180" style="word-break: break-all">Username</th>
                             <th width="250">Email</th>
                             <th>Created At</th>

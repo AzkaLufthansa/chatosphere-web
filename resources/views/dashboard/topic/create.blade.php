@@ -14,7 +14,7 @@
 
     <div class="recent-orders">
         <div class="form-card">
-            <form action="/topic" method="POST">
+            <form action="/topic" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="title" class="label-form">Title</label><br>
@@ -47,6 +47,16 @@
                         @endforeach
                     </select>
                     @error('category_id')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="image" class="label-form">Image</label>
+                    <span class="text-muted">(Optional)</span>
+                    <input type="file" name="image" id="image" class="input-form">
+                    @error('image')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>

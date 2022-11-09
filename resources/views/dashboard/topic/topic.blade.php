@@ -16,7 +16,17 @@
     <div class="recent-orders">
         <h2>Topic Data</h2>
 
-        <a href="/topic/create" class="add-button">Add Topic</a>
+        <div style="display: flex; justify-content: space-between; align-items: center">
+            <div>
+                <a href="/topic/create" class="add-button">Add Topic</a>
+            </div>
+            <div>
+                <form action="#">
+                    <input type="text" class="search-input" style="width: 20rem" placeholder="Enter keyword...">
+                    <button class="add-button">Search</button>
+                </form>
+            </div>
+        </div>
 
         <div class="table-wrapper">
             <table cellspacing="20">

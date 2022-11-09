@@ -16,7 +16,12 @@
 
     <div class="recent-orders">
         <div class="form-card">
-            
+            <h2>Topic By Category : {{ $category->name }}</h2>
+            <p style="margin-top: .7rem">Total topic : {{ $category->topics->count() }}</p>
+
+            <div>
+                
+            </div>
         </div>
     </div>
 @endsection

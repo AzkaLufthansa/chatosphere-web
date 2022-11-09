@@ -11,8 +11,6 @@
             <p>Hey, <b>{{ auth()->user()->name }}</b></p>
             <small class="text-muted role">{{ auth()->user()->role }}</small>
         </div>
-        <div class="profile-photo">
-            <img src="{{ asset('storage/' . auth()->user()->image) }}">
-        </div>
+        <img src="{{ asset('storage/' . auth()->user()->image) }}" class="profile-photo">
     </div>
 </div>

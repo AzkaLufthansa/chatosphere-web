@@ -117,7 +117,13 @@ small {
     width: 2.8rem;
     height: 2.8rem;
     border-radius: 50%;
-    object-fit: cover;
+}
+
+.profile-photo-large {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    border: 4px solid var(--color-primary);
 }
 
 .role {
@@ -723,7 +729,6 @@ main a {
 
 /* =================== My CSS ================= */
 .add-button {
-    margin-top: 10px;
     background-color: var(--color-primary);
     text-align: left;
     display: inline-block;
@@ -752,6 +757,7 @@ main a {
     border-radius: var(--card-border-radius);
     box-shadow: var(--box-shadow);
     transition: all 300ms ease;
+    word-break: break-all;
 }
 
 input, select, textarea, button {
@@ -841,4 +847,53 @@ input, select, textarea, button {
 
 .topic-content {
     line-height: 1.7rem;
+}
+
+.topic-image {
+    width: 300px;
+}
+
+.form-card .top {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 2.5rem;
+}
+
+.middle {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.middle .column {
+    display: flex;
+    justify-content: center;
+    gap: 20rem;
+}
+
+.middle .column .row {
+    margin-bottom: 1rem;
+}
+
+.middle .bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-input {
+    padding: 8px;
+    border-radius: 5px;
+    width: 20rem
+}
+
+.search-input:focus {
+    outline: none;
+    border: 3px solid #009b9f;
+    transition: all 300ms ease;
+}
+
+.add-button:focus {
+    outline: none;
+    border: 3px solid #05c0c6;
+    transition: all 300ms ease;
 }

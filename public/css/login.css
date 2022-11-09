@@ -44,7 +44,7 @@ button {
     padding: 10px;
     border-radius: 5px;
     border: none;
-    background: linear-gradient(to bottom right, #008286, #02c9d0);
+    background: linear-gradient(to top left, #008286, #02c9d0);
     font-weight: 600;
     color: white;
     cursor: pointer;

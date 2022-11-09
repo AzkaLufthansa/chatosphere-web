@@ -16,7 +16,17 @@
     <div class="recent-orders">
         <h2>Category Data</h2>
 
-        <a href="/category/create" class="add-button">Add Category</a>
+        <div style="display: flex; justify-content: space-between; align-items: center">
+            <div>
+                <a href="/category/create" class="add-button">Add Category</a>
+            </div>
+            <div>
+                <form action="#">
+                    <input type="text" class="search-input" placeholder="Enter keyword...">
+                    <button class="add-button">Search</button>
+                </form>
+            </div>
+        </div>
 
         <table cellspacing="20">
             @if ($categories->count())
@@ -39,7 +49,6 @@
                             <td>{{ $item->created_at->diffForHumans() }}</td>
                             <td>{{ $item->updated_at->diffForHumans() }}</td>
                             <td>
-                                <a href="/category/{{ $item->slug }}" class="primary"><span class="material-symbols-sharp">visibility</span></a>
                                 <a href="/category/{{ $item->slug }}/edit" class="warning"><span class="material-symbols-sharp">edit</span></a>
                                 <form action="/category/{{ $item->slug }}" style="display: inline;" method="POST">
                                     @csrf
