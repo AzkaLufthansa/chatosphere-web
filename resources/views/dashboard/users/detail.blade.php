@@ -18,7 +18,18 @@
         <div class="form-card">
             <div class="top">
                 <h2 style="margin-bottom: 2rem;">{{ $user->name }} Profile</h2>
-                <img src="{{ asset('storage/' . $user->image) }}" class="profile-photo-large">
+                <img src="{{ asset('storage/' . $user->image) }}" class="profile-photo-large" style="margin-bottom: 1rem">
+                <div style="display: flex; gap: 2rem; align-items: center">
+                    <a href="/user/{{ $user->id }}/edit" class="primary"><span class="material-symbols-sharp">group</span></a>
+                    <a href="/user/{{ $user->id }}/edit" class="warning"><span class="material-symbols-sharp">edit</span></a>
+                    <form action="/user/{{ $user->id }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" style="background: transparent" class="danger" style="cursor: pointer">
+                            <span class="material-symbols-sharp" onclick="return confirm('Are you sure?')">delete</span>
+                        </button>
+                    </form>
+                </div>
             </div>
             <div class="middle">
                 <div class="column">
@@ -39,6 +50,10 @@
                             <h4>Phone</h4>
                             <div>{{ $user->phone }}</div>
                         </div>
+                        <div class="row">
+                            <h4><a href="#">Friend</a></h4>
+                            <div>Coming soon..</div>
+                        </div>
                     </div>
                     <div>
                         <div class="row">
@@ -50,11 +65,11 @@
                             <div>{{ $user->role }}</div>
                         </div>
                         <div class="row">
-                            <h4>Topic Posted</h4>
+                            <h4><a href="#">Topic Posted</a></h4>
                             <div>{{ $user->topics->count() }}</div>
                         </div>
                         <div class="row">
-                            <h4>Comment Posted</h4>
+                            <h4><a href="#">Comment Posted</a></h4>
                             <div>Coming soon..</div>
                         </div>
                     </div>
@@ -62,6 +77,7 @@
             </div>
             <div class="button-group">
                 <a href="/user">Back</a>
+                <a href="/user">See all {{ $user->name }} topics</a>
             </div>
         </div>
     </div>

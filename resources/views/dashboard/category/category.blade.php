@@ -21,8 +21,8 @@
                 <a href="/category/create" class="add-button">Add Category</a>
             </div>
             <div>
-                <form action="#">
-                    <input type="text" class="search-input" placeholder="Enter keyword...">
+                <form action="/category">
+                    <input type="text" class="search-input" placeholder="Enter keyword..." name="search" value="{{ request('search') }}">
                     <button class="add-button">Search</button>
                 </form>
             </div>
@@ -49,6 +49,7 @@
                             <td>{{ $item->created_at->diffForHumans() }}</td>
                             <td>{{ $item->updated_at->diffForHumans() }}</td>
                             <td>
+                                <a href="#" class="primary"><span class="material-symbols-sharp">visibility</span></a>
                                 <a href="/category/{{ $item->slug }}/edit" class="warning"><span class="material-symbols-sharp">edit</span></a>
                                 <form action="/category/{{ $item->slug }}" style="display: inline;" method="POST">
                                     @csrf

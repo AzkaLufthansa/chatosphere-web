@@ -21,8 +21,8 @@
                 <a href="/topic/create" class="add-button">Add Topic</a>
             </div>
             <div>
-                <form action="#">
-                    <input type="text" class="search-input" style="width: 20rem" placeholder="Enter keyword...">
+                <form action="/topic">
+                    <input type="text" class="search-input" style="width: 20rem" placeholder="Enter keyword..." name="search" value="{{ request('search') }}">
                     <button class="add-button">Search</button>
                 </form>
             </div>

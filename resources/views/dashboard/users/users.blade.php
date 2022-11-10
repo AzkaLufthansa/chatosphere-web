@@ -22,8 +22,8 @@
                 <a href="/user/create" class="add-button">Add User</a>
             </div>
             <div>
-                <form action="#">
-                    <input type="text" class="search-input" placeholder="Enter keyword...">
+                <form action="/user">
+                    <input type="text" class="search-input" placeholder="Enter keyword..." name="search" value="{{ request('search') }}">
                     <button class="add-button">Search</button>
                 </form>
             </div>

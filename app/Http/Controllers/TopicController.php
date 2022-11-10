@@ -22,7 +22,7 @@ class TopicController extends Controller
     {
         return view('dashboard.topic.topic', [
             'title' => 'Topic',
-            'topics' => Topic::latest()->get()
+            'topics' => Topic::latest()->filter(request(['search']))->get()
         ]);
     }
 

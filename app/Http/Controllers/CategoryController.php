@@ -17,7 +17,7 @@ class CategoryController extends Controller
     {
         return view('dashboard.category.category', [
             'title' => 'Category',
-            'categories' => Category::latest()->get()
+            'categories' => Category::latest()->filter(request(['search']))->get()
         ]);
     }
 
@@ -60,10 +60,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('dashboard.category.detail', [
-            'title' => 'Detail Category',
-            'category' => $category
-        ]);
+        
     }
 
     /**
