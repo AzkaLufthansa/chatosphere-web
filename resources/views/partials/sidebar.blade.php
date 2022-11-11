@@ -22,6 +22,10 @@
             <span class="material-symbols-sharp">group</span>
             <h3>Users</h3>
         </a>
+        <a href="/friend" class="{{ Request::is('friend*') ? 'active' : '' }}">
+            <span class="material-symbols-sharp">diversity_3</span>
+            <h3>Friend</h3>
+        </a>
         <a href="/category" class="{{ Request::is('category*') ? 'active' : '' }}">
             <span class="material-symbols-sharp">category</span>
             <h3>Category</h3>

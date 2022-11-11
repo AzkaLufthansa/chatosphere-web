@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FriendController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopicController;
@@ -41,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('topic', TopicController::class);
     Route::resource('user', UserController::class);
     Route::resource('category', CategoryController::class);
+    Route::resource('friend', FriendController::class);
     
     Route::get('/settings', function () {
         return view('settings', [

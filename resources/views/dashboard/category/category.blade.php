@@ -16,9 +16,10 @@
     <div class="recent-orders">
         <h2>Category Data</h2>
 
-        <div style="display: flex; justify-content: space-between; align-items: center">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
             <div>
                 <a href="/category/create" class="add-button">Add Category</a>
+                <div>Records found : {{ $categories->count() }}</div>
             </div>
             <div>
                 <form action="/category">
@@ -63,7 +64,7 @@
                     @endforeach
                 </tbody>
             @else
-                <td class="data-empty">Data is still empty!</td>
+                <td class="data-empty">Data not found!</td>
             @endif
         </table>
         @if ($categories->count())

@@ -50,7 +50,7 @@
         <div class="item">
             <div class="right">
                 <div class="info">
-                    <h3 class="empty">Data is still empty!</h3>
+                    <h3 class="empty">Data not found!</h3>
                 </div>
             </div>
         </div>

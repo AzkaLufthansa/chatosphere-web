@@ -74,7 +74,7 @@
                 </div>
                 <div class="button-group">
                     <a href="/topic">Back</a>
-                    <button type="submit">Edit</button>
+                    <button type="submit">Add</button>
                 </div>
             </form>
         </div>

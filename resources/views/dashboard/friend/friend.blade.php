@@ -8,23 +8,23 @@
     @include('sweetalert::alert')
 
     <div class="header">
-        <h1>Users</h1>
+        <h1>Friend</h1>
         <div class="user-profile">
             @include('partials.top_user')
         </div>
     </div>
 
     <div class="recent-orders">
-        <h2>Users Data</h2>
+        <h2>User Friend Relation</h2>
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
             <div>
-                <a href="/user/create" class="add-button">Add User</a>
-                <div>Records found : {{ $users->count() }}</div>
+                <a href="/friend/create" class="add-button">Add Relation</a>
+                <div>Records found : {{ $relations->count() }}</div>
             </div>
             <div>
-                <form action="/user">
-                    <input type="text" class="search-input" placeholder="Enter keyword..." name="search" value="{{ request('search') }}">
+                <form action="/friend">
+                    <input type="text" class="search-input" placeholder="Enter id..." name="search" value="{{ request('search') }}">
                     <button class="add-button">Search</button>
                 </form>
             </div>
@@ -32,37 +32,28 @@
 
         <div class="table-wrapper">
             <table cellspacing="20">
-                @if ($users->count())
+                @if ($relations->count())
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th width="200">Name</th>
-                            <th width="180" style="word-break: break-all">Username</th>
-                            <th width="250">Email</th>
+                            <th>User Id</th>
+                            <th>Friend Id</th>
                             <th>Created At</th>
                             <th>Updated At</th>
-                            <th>Role</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $item)
+                        @foreach ($relations as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->username }}</td>
-                                <td>{{ $item->email }}</td>
+                                <td>{{ $item->user_id }}</td>
+                                <td>{{ $item->friend_id }}</td>
                                 <td>{{ $item->created_at->diffForHumans() }}</td>
                                 <td>{{ $item->updated_at->diffForHumans() }}</td>
-                                @if ($item->role == 'admin')
-                                    <td class="warning" style="text-transform: capitalize">{{ $item->role }}</td>
-                                @else
-                                    <td class="success" style="text-transform: capitalize">{{ $item->role }}</td>
-                                @endif
                                 <td>
-                                    <a href="/user/{{ $item->id }}" class="primary"><span class="material-symbols-sharp">visibility</span></a>
-                                    <a href="/user/{{ $item->id }}/edit" class="warning"><span class="material-symbols-sharp">edit</span></a>
-                                    <form action="/user/{{ $item->id }}" style="display: inline;" method="POST">
+                                    <a href="/friend/{{ $item->id }}/edit" class="warning"><span class="material-symbols-sharp">edit</span></a>
+                                    <form action="/friend/{{ $item->id }}" style="display: inline;" method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" style="background: transparent" class="danger" style="cursor: pointer">
@@ -78,7 +69,7 @@
                 @endif
             </table>
         </div>
-        @if ($users->count())
+        @if ($relations->count())
             <a href="#" style="display: block">Show All</a>
         @endif
     </div>

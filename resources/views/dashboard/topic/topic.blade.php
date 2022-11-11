@@ -15,10 +15,11 @@
 
     <div class="recent-orders">
         <h2>Topic Data</h2>
-
-        <div style="display: flex; justify-content: space-between; align-items: center">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
             <div>
                 <a href="/topic/create" class="add-button">Add Topic</a>
+                <div>Records found : {{ $topics->count() }}</div>
             </div>
             <div>
                 <form action="/topic">
@@ -66,7 +67,7 @@
                         @endforeach
                     </tbody>
                 @else
-                    <td class="data-empty">Data is still empty!</td>
+                    <td class="data-empty">Data not found!</td>
                 @endif
             </table>
         </div>

@@ -51,4 +51,15 @@ class User extends Authenticatable
     public function topics() {
         return $this->hasMany(Topic::class);
     }
+
+    public function friends()
+    {
+        return $this->belongsToMany('User', 'friends', 'user_id', 'friend_id'); 
+    }
+
+    function friendOf()
+    {
+        return $this->belongsToMany('User', 'friends', 'friend_id', 'user_id');
+    }
+
 }

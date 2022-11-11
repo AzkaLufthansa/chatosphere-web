@@ -77,7 +77,7 @@
                 @endforeach
             </tbody>
             @else
-                <td class="data-empty">Data is still empty!</td>
+                <td class="data-empty">Data not found!</td>
             @endif
         </table>
         @if ($recent_topic->count())
