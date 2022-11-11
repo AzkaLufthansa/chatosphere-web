@@ -29,9 +29,14 @@
     <h2>Recent Users</h2>
     @if ($recent_user->count())
         @foreach ($recent_user as $item)
+        <a href="/user/{{ $item->id }}">
             <div class="item online">
                 <div class="">
-                    <img src="{{ asset('storage/' . $item->image) }}" class="profile-photo">
+                    @if ($item->image)
+                        <img src="{{ asset('storage/' . $item->image) }}" class="profile-photo">
+                    @else
+                        <img src="{{ asset('images/default_profile.png') }}" class="profile-photo">
+                    @endif
                 </div>
                 <div class="right">
                     <div class="info">
@@ -45,6 +50,7 @@
                     @endif
                 </div>
             </div>
+        </a>
         @endforeach
     @else
         <div class="item">

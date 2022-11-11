@@ -11,6 +11,10 @@
             <p>Hey, <b>{{ auth()->user()->name }}</b></p>
             <small class="text-muted role">{{ auth()->user()->role }}</small>
         </div>
-        <img src="{{ asset('storage/' . auth()->user()->image) }}" class="profile-photo">
+        @if (auth()->user()->image)
+            <img src="{{ asset('storage/' . auth()->user()->image) }}" class="profile-photo">
+        @else
+            <img src="{{ asset('images/default_profile.png') }}" class="profile-photo">
+        @endif
     </div>
 </div>

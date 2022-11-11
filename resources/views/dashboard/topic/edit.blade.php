@@ -54,8 +54,14 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="image" class="label-form">Image</label><br>
-                    <input type="file" name="image" id="image" class="input-form">
+                    <label for="image" class="label-form">Image</label>
+                    <span class="text-muted">(Optional)</span>
+                    @if ($topic->image)
+                        <img class="img-preview" src="{{ asset('storage/' . $topic->image) }}" style="display: block">
+                    @else
+                        <img class="img-preview" style="display: none">
+                    @endif
+                    <input type="file" name="image" id="image" class="input-form" onchange="previewImage()">
                     @error('image')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -90,5 +96,19 @@
                 .then(response => response.json())
                 .then(data => slug.value = data.slug)
         });
+
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new window.FileReader;
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;    
+            }
+        }
     </script>
 @endsection

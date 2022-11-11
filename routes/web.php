@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\UserController;
@@ -44,9 +45,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('category', CategoryController::class);
     Route::resource('friend', FriendController::class);
     
-    Route::get('/settings', function () {
-        return view('settings', [
-            'title' => 'Settings'
-        ]);
-    });
+    Route::get('/settings', [SettingController::class, 'index']);
 });

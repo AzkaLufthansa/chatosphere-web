@@ -43,18 +43,32 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $rules = [
             'name' => 'required',
             'username' => 'required|unique:users',
             'email' => 'required|unique:users',
             'password' => 'required|min:8',
-            'phone' => 'required',
-            'birthday' => 'required',
-            'image' => 'required|image',
-        ]);
+        ];
 
+        if($request->phone) {
+            $rules['phone'] = 'required';
+        }
+
+        if($request->birthday) {
+            $rules['birthday'] = 'required';
+        }
+
+        if($request->file('image')) {
+            $rules['image'] = 'required|image';
+        }
+
+        $validatedData = $request->validate($rules);
         $validatedData['password'] = Hash::make($validatedData['password']);
-        $validatedData['image'] = $request->file('image')->store('user_image');
+
+        if($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('user_image');
+        }
+
         User::create($validatedData);
         Alert::success('Success', 'You\'ve Successfully added data!');
         return redirect('/user');
@@ -99,10 +113,19 @@ class UserController extends Controller
     {
         $rules = [
             'name' => 'required',
-            'phone' => 'required',
-            'birthday' => 'required',
-            'image' => 'required|image',
         ];
+
+        if($request->phone) {
+            $rules['phone'] = 'required';
+        }
+
+        if($request->birthday) {
+            $rules['birthday'] = 'required';
+        }
+
+        if($request->file('image')) {
+            $rules['image'] = 'required|image';
+        }
 
         if($request->username !== $user->username) {
             $rules['username'] = 'required|unique:users';
@@ -114,8 +137,12 @@ class UserController extends Controller
 
         $validatedData = $request->validate($rules);
 
-        Storage::delete($user->image);
-        $validatedData['image'] = $request->file('image')->store('user_image');
+        if($request->file('image')) {
+            if($user->image) {
+                Storage::delete($user->image);
+            }
+            $validatedData['image'] = $request->file('image')->store('user_image');
+        }
         User::find($user->id)->update($validatedData);
         Alert::success('Success', 'You\'ve Successfully updated data!');
         return redirect('/user');
@@ -129,7 +156,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        Storage::delete($user->image);
+        if($user->image) {
+            Storage::delete($user->image);
+        }
         User::destroy($user->id);
         Alert::success('Success', 'You\'ve Successfully deleted data!');
         return redirect('/user');

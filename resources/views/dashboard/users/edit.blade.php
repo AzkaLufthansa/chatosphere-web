@@ -46,6 +46,7 @@
                 </div>
                 <div class="form-group">
                     <label for="phone" class="label-form">Phone</label>
+                    <span class="text-muted">(Optional)</span>
                     <input type="number" id="phone" name="phone" class="input-form" value="{{ old('phone', $user->phone) }}">
                     @error('phone')
                         <div class="invalid-feedback">
@@ -55,6 +56,7 @@
                 </div>
                 <div class="form-group">
                     <label for="birthday" class="label-form">Birthday</label>
+                    <span class="text-muted">(Optional)</span>
                     <input type="date" id="birthday" name="birthday" class="input-form" value="{{ old('birthday', $user->birthday) }}">
                     @error('birthday')
                         <div class="invalid-feedback">
@@ -64,6 +66,7 @@
                 </div>
                 <div class="form-group">
                     <label for="image" class="label-form">Image</label>
+                    <span class="text-muted">(Optional)</span>
                     <input type="file" id="image" name="image" class="input-form" value="{{ old('image') }}">
                     @error('image')
                         <div class="invalid-feedback">

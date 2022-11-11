@@ -23,7 +23,6 @@ class UserSeeder extends Seeder
             'phone' => '082120205224',
             'birthday' => '2005-06-28',
             'role' => 'admin',
-            'image' => 'user_image/default_profile.png'
         ]);
         User::create([
             'name' => 'Salfa Juliansyah',
@@ -33,7 +32,6 @@ class UserSeeder extends Seeder
             'phone' => '082120205224',
             'birthday' => '2022-11-15',
             'role' => 'admin',
-            'image' => 'user_image/default_profile.png'
         ]);
         User::create([
             'name' => 'Muhammad Hizba Haekal',
@@ -43,7 +41,6 @@ class UserSeeder extends Seeder
             'phone' => '082120205224',
             'birthday' => '2022-11-15',
             'role' => 'admin',
-            'image' => 'user_image/default_profile.png'
         ]);
         User::create([
             'name' => 'Nazwa Wahdatul Aisya',
@@ -53,7 +50,6 @@ class UserSeeder extends Seeder
             'phone' => '082120205224',
             'birthday' => '2022-11-15',
             'role' => 'admin',
-            'image' => 'user_image/default_profile.png'
         ]);
         User::create([
             'name' => 'Puti Putriani',
@@ -63,7 +59,6 @@ class UserSeeder extends Seeder
             'phone' => '082120205224',
             'birthday' => '2022-11-15',
             'role' => 'admin',
-            'image' => 'user_image/default_profile.png'
         ]);
         User::create([
             'name' => 'Tiya Tresnawati',
@@ -73,7 +68,6 @@ class UserSeeder extends Seeder
             'phone' => '082120205224',
             'birthday' => '2022-11-15',
             'role' => 'admin',
-            'image' => 'user_image/default_profile.png'
         ]);
     }
 }

@@ -18,7 +18,11 @@
         <div class="form-card">
             <div class="top">
                 <h2 style="margin-bottom: 2rem;">{{ $user->name }} Profile</h2>
-                <img src="{{ asset('storage/' . $user->image) }}" class="profile-photo-large" style="margin-bottom: 1rem">
+                @if ($user->image)
+                    <img src="{{ asset('storage/' . $user->image) }}" class="profile-photo-large" style="margin-bottom: 1rem">
+                @else
+                    <img src="{{ asset('images/default_profile.png') }}" class="profile-photo-large" style="margin-bottom: 1rem">
+                @endif
                 <div style="display: flex; gap: 2rem; align-items: center">
                     <a href="/user/{{ $user->id }}/edit" class="primary"><span class="material-symbols-sharp">group</span></a>
                     <a href="/user/{{ $user->id }}/edit" class="warning"><span class="material-symbols-sharp">edit</span></a>
@@ -51,7 +55,7 @@
                             <div>{{ $user->phone }}</div>
                         </div>
                         <div class="row">
-                            <h4><a href="#">Friend</a></h4>
+                            <h4><a href="/user/friendof={{ $user->username }}">Friend</a></h4>
                             <div>Coming soon..</div>
                         </div>
                     </div>
@@ -65,7 +69,7 @@
                             <div>{{ $user->role }}</div>
                         </div>
                         <div class="row">
-                            <h4><a href="#">Topic Posted</a></h4>
+                            <h4><a href="/topic?user={{ $user->username }}">Topic Posted</a></h4>
                             <div>{{ $user->topics->count() }}</div>
                         </div>
                         <div class="row">
@@ -77,7 +81,7 @@
             </div>
             <div class="button-group">
                 <a href="/user">Back</a>
-                <a href="/user">See all {{ $user->name }} topics</a>
+                <a href="/topic?user={{ $user->username }}">See all {{ $user->name }} topics</a>
             </div>
         </div>
     </div>

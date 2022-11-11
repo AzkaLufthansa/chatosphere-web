@@ -47,8 +47,8 @@
                         @foreach ($relations as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->user_id }}</td>
-                                <td>{{ $item->friend_id }}</td>
+                                <td><a href="/user/{{ $item->user_id }}">{{ $item->user_id }}</a></td>
+                                <td><a href="/user/{{ $item->friend_id }}">{{ $item->friend_id }}</a></td>
                                 <td>{{ $item->created_at->diffForHumans() }}</td>
                                 <td>{{ $item->updated_at->diffForHumans() }}</td>
                                 <td>
