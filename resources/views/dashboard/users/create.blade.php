@@ -75,7 +75,8 @@
                 <div class="form-group">
                     <label for="image" class="label-form">Image</label>
                     <span class="text-muted">(Optional)</span>
-                    <input type="file" id="image" name="image" class="input-form" value="{{ old('image') }}">
+                    <img class="img-preview" style="display: none">
+                    <input type="file" id="image" name="image" class="input-form" value="{{ old('image') }}" onchange="previewImage()">
                     @error('image')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -89,4 +90,21 @@
             </form>
         </div>
     </div>
+
+
+    <script>
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new window.FileReader;
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;    
+            }
+        }
+    </script>
 @endsection
