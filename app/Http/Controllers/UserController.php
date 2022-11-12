@@ -45,7 +45,7 @@ class UserController extends Controller
     {
         $rules = [
             'name' => 'required',
-            'username' => 'required|unique:users',
+            'username' => 'required|unique:users|alpha_dash',
             'email' => 'required|unique:users',
             'password' => 'required|min:8',
         ];
@@ -128,7 +128,7 @@ class UserController extends Controller
         }
 
         if($request->username !== $user->username) {
-            $rules['username'] = 'required|unique:users';
+            $rules['username'] = 'required|unique:users|alpha_dash';
         }
         
         if($request->email !== $user->email) {

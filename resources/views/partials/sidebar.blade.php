@@ -30,11 +30,11 @@
             <span class="material-symbols-sharp">category</span>
             <h3>Category</h3>
         </a>
-        <a href="/reports" class="{{ Request::is('reports') ? 'active' : '' }}">
+        <a href="/report" class="{{ Request::is('report*') ? 'active' : '' }}">
             <span class="material-symbols-sharp">report</span>
             <h3>Reports</h3>
         </a>
-        <a href="/settings" class="{{ Request::is('settings') ? 'active' : '' }}">
+        <a href="/settings" class="{{ Request::is('settings*') ? 'active' : '' }}">
             <span class="material-symbols-sharp">settings</span>
             <h3>Settings</h3>
         </a>
