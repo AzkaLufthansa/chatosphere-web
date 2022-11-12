@@ -23,8 +23,22 @@
             </div>
             <div>
                 <form action="/topic">
-                    <input type="text" class="search-input" style="width: 20rem" placeholder="Enter keyword..." name="search" value="{{ request('search') }}">
-                    <button class="add-button">Search</button>
+                    @if (request('user'))
+                        <input type="hidden" name="user" value="{{ request('user') }}">
+                    @endif
+                    <select name="category" class="search-input">
+                        <option value="">-- Filter By Category --</option>
+                        @foreach ($categories as $item)
+                            @if (request('category') == $item->slug)
+                                <option value="{{ $item->slug }}" selected>{{ $item->name }}</option>
+                            @else
+                                <option value="{{ $item->slug }}">{{ $item->name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                    <input type="text" class="search-input" style="width: 15rem" placeholder="Enter keyword..." name="search" value="{{ request('search') }}">
+                    <button class="add-button" type="submit">Search</button>
+                    <a href="/topic" class="add-button button-danger">Reset Filters</a>
                 </form>
             </div>
         </div>
@@ -49,7 +63,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->title }}</td>
                                 <td><a href="/user/{{ $item->user->id }}">{{ $item->user->username }}</a></td>
-                                <td><a href="/category/{{ $item->category->slug }}">{{ $item->category->name }}</a></td>
+                                <td>{{ $item->category->name }}</td>
                                 <td>{{ $item->created_at->diffForHumans() }}</td>
                                 <td>{{ $item->updated_at->diffForHumans() }}</td>
                                 <td>

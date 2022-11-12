@@ -736,6 +736,11 @@ main a {
     border-radius: 5px;
     color: var(--color-white);
     padding: 8px;
+    font-size: 1rem;
+}
+
+.button-danger {
+    background-color: var(--color-danger);
 }
 
 .add-button:hover {
@@ -884,7 +889,6 @@ input, select, textarea, button {
 .search-input {
     padding: 8px;
     border-radius: 5px;
-    width: 20rem
 }
 
 .search-input:focus {

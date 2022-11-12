@@ -39,11 +39,12 @@ Route::middleware(['auth'])->group(function () {
         ]);
     });
     
-    Route::get('/topic/checkSlug', [TopicController::class, 'checkSlug']);
     Route::resource('topic', TopicController::class);
+    Route::get('/topic/checkSlug', [TopicController::class, 'checkSlug']);
+    
     Route::resource('user', UserController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('friend', FriendController::class);
-    
+ 
     Route::get('/settings', [SettingController::class, 'index']);
 });

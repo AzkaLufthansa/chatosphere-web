@@ -29,7 +29,7 @@
                     </form>
                 </div>
             </div>
-            <p class="text-muted author">By <a href="/user/{{ $topic->user->id }}">{{ $topic->user->name }}</a> in <a href="/topic?category={{ $topic->category->name }}">{{ $topic->category->name }}</a></p>
+            <p class="text-muted author">By <a href="/user/{{ $topic->user->id }}">{{ $topic->user->name }}</a> in <a href="/topic?category={{ $topic->category->slug }}">{{ $topic->category->name }}</a></p>
             @if ($topic->image)
                 <div style="margin-top: 1.7rem"><img src="{{ asset('storage/' . $topic->image) }}" class="topic-image""></div>
             @endif

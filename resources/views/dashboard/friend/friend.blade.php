@@ -25,7 +25,8 @@
             <div>
                 <form action="/friend">
                     <input type="text" class="search-input" placeholder="Enter id..." name="search" value="{{ request('search') }}">
-                    <button class="add-button">Search</button>
+                    <button class="add-button" type="submit">Search</button>
+                    <a href="/friend" class="add-button button-danger">Reset Filters</a>
                 </form>
             </div>
         </div>

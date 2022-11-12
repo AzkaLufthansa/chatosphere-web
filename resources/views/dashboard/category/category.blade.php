@@ -23,8 +23,9 @@
             </div>
             <div>
                 <form action="/category">
-                    <input type="text" class="search-input" placeholder="Enter keyword..." name="search" value="{{ request('search') }}">
-                    <button class="add-button">Search</button>
+                    <input type="text" class="search-input" placeholder="Enter keyword..." name="search" value="{{ request('search') }}" style="width: 15rem">
+                    <button class="add-button" type="submit">Search</button>
+                    <a href="/user" class="add-button button-danger">Reset Filters</a>
                 </form>
             </div>
         </div>

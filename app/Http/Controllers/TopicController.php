@@ -8,7 +8,6 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
-use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\Storage;
 
 class TopicController extends Controller
@@ -22,7 +21,8 @@ class TopicController extends Controller
     {
         return view('dashboard.topic.topic', [
             'title' => 'Topic',
-            'topics' => Topic::latest()->filter(request(['search']))->get()
+            'topics' => Topic::latest()->filter(request(['search', 'category', 'user']))->get(),
+            'categories' => Category::all()
         ]);
     }
 
