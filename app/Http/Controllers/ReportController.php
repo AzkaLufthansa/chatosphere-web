@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ReportController extends Controller
 {
@@ -84,8 +85,10 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Report $report)
     {
-        //
+        Report::destroy($report->id);
+        Alert::success('Success', 'You\'ve successfully deleted data!');
+        return redirect('report');
     }
 }

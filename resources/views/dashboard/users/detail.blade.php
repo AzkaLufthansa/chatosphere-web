@@ -52,7 +52,11 @@
                         </div>
                         <div class="row">
                             <h4>Phone</h4>
-                            <div>{{ $user->phone }}</div>
+                            @if ($user->phone)
+                                <div>{{ $user->phone }}</div>
+                            @else
+                                <div> - </div>
+                            @endif
                         </div>
                         <div class="row">
                             <h4><a href="/user/friendof={{ $user->username }}">Friend</a></h4>
@@ -62,7 +66,11 @@
                     <div>
                         <div class="row">
                             <h4>Birthday</h4>
-                            <div>{{ Carbon\Carbon::parse($user->birthday)->format('D, d M Y') }}</div>
+                            @if ($user->birthday)
+                                <div>{{ Carbon\Carbon::parse($user->birthday)->format('D, d M Y') }}</div>
+                            @else
+                                <div> - </div>
+                            @endif
                         </div>
                         <div class="row">
                             <h4>Role</h4>

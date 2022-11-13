@@ -49,4 +49,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('report', ReportController::class);
  
     Route::get('/settings', [SettingController::class, 'index']);
+    Route::post('/update_password', [SettingController::class, 'update_password']);
 });

@@ -52,7 +52,7 @@
                                 <td>{{ $item->created_at->diffForHumans() }}</td>
                                 <td>
                                     <a href="/topic/{{ $item->topic->slug }}" class="primary"><span class="material-symbols-sharp">google_plus_reshare</span></a>
-                                    <form action="/topic/{{ $item->id }}" style="display: inline;" method="POST">
+                                    <form action="/report/{{ $item->id }}" style="display: inline;" method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" style="background: transparent" class="danger" style="cursor: pointer">

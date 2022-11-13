@@ -28,6 +28,7 @@ class LoginController extends Controller
 
         Alert::error('Failed', 'Wrong username / password!');
         return back();
+
     }
 
     public function logout(Request $request)
