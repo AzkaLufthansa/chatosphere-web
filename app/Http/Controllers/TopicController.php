@@ -21,7 +21,7 @@ class TopicController extends Controller
     {
         return view('dashboard.topic.topic', [
             'title' => 'Topic',
-            'topics' => Topic::latest()->filter(request(['search', 'category', 'user']))->get(),
+            'topics' => Topic::with(['user', 'category'])->latest()->filter(request(['search', 'category', 'user']))->simplePaginate(10),
             'categories' => Category::all()
         ]);
     }

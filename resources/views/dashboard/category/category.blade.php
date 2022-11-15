@@ -51,7 +51,7 @@
                             <td>{{ $item->created_at->diffForHumans() }}</td>
                             <td>{{ $item->updated_at->diffForHumans() }}</td>
                             <td>
-                                <a href="#" class="primary"><span class="material-symbols-sharp">visibility</span></a>
+                                <a href="/topic?category={{ $item->slug }}" class="primary"><span class="material-symbols-sharp">visibility</span></a>
                                 <a href="/category/{{ $item->slug }}/edit" class="warning"><span class="material-symbols-sharp">edit</span></a>
                                 <form action="/category/{{ $item->slug }}" style="display: inline;" method="POST">
                                     @csrf
@@ -68,6 +68,9 @@
                 <td class="data-empty">Data not found!</td>
             @endif
         </table>
+        <div style="display: flex; justify-content: end; margin-top: 1rem;">
+            {{ $categories->withQueryString()->links() }}
+        </div>
         @if ($categories->count())
             <a href="#" style="display: block">Show All</a>
         @endif

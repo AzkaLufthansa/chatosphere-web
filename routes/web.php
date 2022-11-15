@@ -44,9 +44,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/topic/checkSlug', [TopicController::class, 'checkSlug']);
     
     Route::resource('user', UserController::class);
-    Route::resource('category', CategoryController::class);
-    Route::resource('friend', FriendController::class);
-    Route::resource('report', ReportController::class);
+    Route::resource('category', CategoryController::class)->except(['show']);
+    Route::resource('friend', FriendController::class)->except(['show']);
+    Route::resource('report', ReportController::class)->except(['create', 'store', 'show', 'edit', 'update']);
  
     Route::get('/settings', [SettingController::class, 'index']);
     Route::post('/update_password', [SettingController::class, 'update_password']);

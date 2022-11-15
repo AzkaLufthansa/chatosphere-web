@@ -84,6 +84,9 @@
                     <td class="data-empty">Data not found!</td>
                 @endif
             </table>
+            <div style="display: flex; justify-content: end; margin-top: 1rem;">
+                {{ $topics->withQueryString()->links() }}
+            </div>
         </div>
         @if ($topics->count())
             <a href="#" style="display: block">Show All</a>

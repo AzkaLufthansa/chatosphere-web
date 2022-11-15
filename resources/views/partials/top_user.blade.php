@@ -2,10 +2,10 @@
     <button id="menu-btn">
         <span class="material-symbols-sharp">menu</span>
     </button>
-    <div class="theme-toggler">
+    {{-- <div class="theme-toggler">
         <span class="material-symbols-sharp active">light_mode</span>
         <span class="material-symbols-sharp">dark_mode</span>
-    </div>
+    </div> --}}
     <div class="profile">
         <div class="info">
             <p>Hey, <b>{{ auth()->user()->name }}</b></p>

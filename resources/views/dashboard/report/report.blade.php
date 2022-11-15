@@ -67,6 +67,9 @@
                     <td class="data-empty">Data not found!</td>
                 @endif
             </table>
+            <div style="display: flex; justify-content: end; margin-top: 1rem;">
+                {{ $reports->withQueryString()->links() }}
+            </div>
         </div>
         @if ($reports->count())
             <a href="#" style="display: block">Show All</a>

@@ -17,7 +17,7 @@ class CategoryController extends Controller
     {
         return view('dashboard.category.category', [
             'title' => 'Category',
-            'categories' => Category::latest()->filter(request(['search']))->get()
+            'categories' => Category::latest()->filter(request(['search']))->simplePaginate(10)
         ]);
     }
 

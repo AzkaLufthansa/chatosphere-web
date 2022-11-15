@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         return view('dashboard.users.users', [
             'title' => 'Users',
-            'users' => User::latest()->filter(request(['search']))->get()
+            'users' => User::latest()->filter(request(['search']))->simplePaginate(10)
         ]);
     }
 

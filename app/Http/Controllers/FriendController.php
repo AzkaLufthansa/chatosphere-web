@@ -19,7 +19,7 @@ class FriendController extends Controller
         
         return view('dashboard.friend.friend', [
             'title' => 'Friend Relation',
-            'relations' => Friend::latest()->filter(request(['search']))->get()
+            'relations' => Friend::latest()->filter(request(['search']))->simplePaginate(10)
         ]);
     }
 
@@ -115,6 +115,8 @@ class FriendController extends Controller
      */
     public function destroy(Friend $friend)
     {
-        //
+        Friend::destroy($friend->id);
+        Alert::success('Success', 'You\'ve successfully deleted data!');
+        return redirect('friend');
     }
 }

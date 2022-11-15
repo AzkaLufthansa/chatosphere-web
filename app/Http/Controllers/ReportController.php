@@ -19,7 +19,7 @@ class ReportController extends Controller
     {
         return view('dashboard.report.report', [
             'title' => 'Report',
-            'reports' => Report::latest()->filter(request(['search']))->get(),
+            'reports' => Report::with(['user', 'topic'])->latest()->filter(request(['search']))->simplePaginate(10),
             'categories' => Category::all()
         ]);
     }

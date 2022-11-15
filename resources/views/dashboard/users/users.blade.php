@@ -78,6 +78,9 @@
                     <td class="data-empty">Data not found!</td>
                 @endif
             </table>
+            <div style="display: flex; justify-content: end; margin-top: 1rem;">
+                {{ $users->withQueryString()->links() }}
+            </div>
         </div>
         @if ($users->count())
             <a href="#" style="display: block">Show All</a>
