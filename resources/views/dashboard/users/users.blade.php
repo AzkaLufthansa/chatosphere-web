@@ -83,7 +83,7 @@
             </div>
         </div>
         @if ($users->count())
-            <a href="#" style="display: block">Show All</a>
+            <a href="/user" style="display: block">Show All</a>
         @endif
     </div>
 @endsection

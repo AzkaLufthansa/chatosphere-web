@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -70,6 +72,10 @@ class UserController extends Controller
         }
 
         User::create($validatedData);
+        LogActivity::create([
+            'user_id' => Auth::user()->id,
+            'message' => 'Just added new user.'
+        ]);
         Alert::success('Success', 'You\'ve Successfully added data!');
         return redirect('/user');
     }
@@ -144,6 +150,10 @@ class UserController extends Controller
             $validatedData['image'] = $request->file('image')->store('user_image');
         }
         User::find($user->id)->update($validatedData);
+        LogActivity::create([
+            'user_id' => Auth::user()->id,
+            'message' => 'Just edited the user.'
+        ]);
         Alert::success('Success', 'You\'ve Successfully updated data!');
         return redirect('/user');
     }
@@ -160,6 +170,10 @@ class UserController extends Controller
             Storage::delete($user->image);
         }
         User::destroy($user->id);
+        LogActivity::create([
+            'user_id' => Auth::user()->id,
+            'message' => 'Just deleted the user.'
+        ]);
         Alert::success('Success', 'You\'ve Successfully deleted data!');
         return redirect('/user');
     }

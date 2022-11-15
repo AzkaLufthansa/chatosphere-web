@@ -72,7 +72,7 @@
             {{ $categories->withQueryString()->links() }}
         </div>
         @if ($categories->count())
-            <a href="#" style="display: block">Show All</a>
+            <a href="/category" style="display: block">Show All</a>
         @endif
     </div>
 

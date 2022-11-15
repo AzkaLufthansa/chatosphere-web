@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Models\Topic;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\LogActivity;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,9 +35,10 @@ Route::middleware(['auth'])->group(function () {
             'total_topics' => Topic::all()->count(),
             'total_users' => User::all()->count(),
             'total_categories' => Category::all()->count(),
-            'recent_topic' => Topic::latest()->limit(5)->get(),
+            'recent_topic' => Topic::with(['user', 'category'])->latest()->limit(5)->get(),
             'recent_user' => User::latest()->limit(3)->get(),
-            'recent_categories' => Category::latest()->pluck('created_at')
+            'recent_categories' => Category::latest()->pluck('created_at'),
+            'log_activities' => LogActivity::with(['user'])->latest()->limit(3)->get()
         ]);
     });
     

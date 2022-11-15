@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Friend;
+use App\Models\LogActivity;
 use App\Models\User;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FriendController extends Controller
 {
@@ -54,6 +56,10 @@ class FriendController extends Controller
         }
 
         Friend::create($validatedData);
+        LogActivity::create([
+            'user_id' => Auth::user()->id,
+            'message' => 'Just added new relation.'
+        ]);
         Alert::success('Success', 'You\'ve successfully created data!');
         return redirect('friend');
     }
@@ -103,6 +109,10 @@ class FriendController extends Controller
         }
 
         Friend::find($friend->id)->update($validatedData);
+        LogActivity::create([
+            'user_id' => Auth::user()->id,
+            'message' => 'Just edited the relation.'
+        ]);
         Alert::success('Success', 'You\'ve successfully updated data!');
         return redirect('friend');
     }
@@ -116,6 +126,10 @@ class FriendController extends Controller
     public function destroy(Friend $friend)
     {
         Friend::destroy($friend->id);
+        LogActivity::create([
+            'user_id' => Auth::user()->id,
+            'message' => 'Just deleted the relation.'
+        ]);
         Alert::success('Success', 'You\'ve successfully deleted data!');
         return redirect('friend');
     }

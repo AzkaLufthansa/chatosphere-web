@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ReportController extends Controller
@@ -88,6 +90,10 @@ class ReportController extends Controller
     public function destroy(Report $report)
     {
         Report::destroy($report->id);
+        LogActivity::create([
+            'user_id' => Auth::user()->id,
+            'message' => 'Just deleted report data.'
+        ]);
         Alert::success('Success', 'You\'ve successfully deleted data!');
         return redirect('report');
     }

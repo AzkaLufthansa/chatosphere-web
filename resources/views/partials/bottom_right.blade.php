@@ -1,27 +1,23 @@
 <div class="recent-updates">
     <h2>Recent Updates</h2>
     <div class="updates">
-        <div class="update">
-            <img src="/images/profile-2.jpg" class="profile-photo">
-            <div class="message">
-                <p><b>Iwan Tyson</b> receive his order of Night lion tech GPS drone.</p>
-                <small class="text-muted">2 Minutes Ago</small>
-            </div>
-        </div>
-        <div class="update">
-            <img src="/images/profile-3.jpg" class="profile-photo">
-            <div class="message">
-                <p><b>Gus Samsuri</b> receive his order of Night lion tech GPS drone.</p>
-                <small class="text-muted">2 Minutes Ago</small>
-            </div>
-        </div>
-        <div class="update">
-            <img src="/images/profile-4.jpg" class="profile-photo">
-            <div class="message">
-                <p><b>Silpia</b> receive his order of Night lion tech GPS drone.</p>
-                <small class="text-muted">2 Minutes Ago</small>
-            </div>
-        </div>
+        @if ($log_activities->count())
+            @foreach ($log_activities as $item)
+                <div class="update">
+                    @if ($item->image)
+                        <img src="{{ asset('storage/' . $item->user->image) }}" class="profile-photo">
+                    @else
+                        <img src="{{ asset('images/default_profile.png') }}" class="profile-photo">
+                    @endif
+                    <div class="message">
+                        <p><b>{{ $item->user->username }}</b> {{ $item->message }}</p>
+                        <small class="text-muted">{{ $item->created_at->diffForHumans() }}</small>
+                    </div>
+                </div>
+            @endforeach
+        @else
+            No activity yet!
+        @endif
     </div>
 </div>
 <!-- END OF RECENT UPDATES -->

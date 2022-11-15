@@ -89,7 +89,7 @@
             </div>
         </div>
         @if ($topics->count())
-            <a href="#" style="display: block">Show All</a>
+            <a href="/topic" style="display: block">Show All</a>
         @endif
     </div>
 @endsection

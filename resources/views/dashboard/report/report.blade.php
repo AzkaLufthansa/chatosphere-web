@@ -72,7 +72,7 @@
             </div>
         </div>
         @if ($reports->count())
-            <a href="#" style="display: block">Show All</a>
+            <a href="/report" style="display: block">Show All</a>
         @endif
     </div>
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LogActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -22,6 +23,10 @@ class LoginController extends Controller
 
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            LogActivity::create([
+                'user_id' => Auth::user()->id,
+                'message' => 'Just logged in.'
+            ]);
             Alert::success('Success', 'You\'ve successfully logged in!');
             return redirect('/');
         }
@@ -33,6 +38,10 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
+        LogActivity::create([
+            'user_id' => Auth::user()->id,
+            'message' => 'Just logged out.'
+        ]);
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

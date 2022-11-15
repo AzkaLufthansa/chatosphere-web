@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\LogActivity;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
@@ -48,6 +50,10 @@ class CategoryController extends Controller
         $slug = strtolower($validatedData['name']);
         $validatedData['slug'] = str_replace(' ', '-', $slug);
         Category::create($validatedData);
+        LogActivity::create([
+            'user_id' => Auth::user()->id,
+            'message' => 'Just added new category.'
+        ]);
         Alert::success('Success', 'You\'ve Succesfully added data!');
         return redirect('/category');
     }
@@ -96,6 +102,10 @@ class CategoryController extends Controller
         }
 
         Category::where('slug', $category->slug)->update($validatedData);
+        LogActivity::create([
+            'user_id' => Auth::user()->id,
+            'message' => 'Just edited the category.'
+        ]);
         Alert::success('Success', 'You\'ve Succesfully updated data!');
         return redirect('/category');
     }
@@ -109,6 +119,10 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         Category::destroy($category->id);
+        LogActivity::create([
+            'user_id' => Auth::user()->id,
+            'message' => 'Just deleted the category.'
+        ]);
         Alert::success('Success', 'You\'ve Successfully deleted data!');
         return redirect('/category');
     }

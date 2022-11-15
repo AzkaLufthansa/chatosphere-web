@@ -74,7 +74,7 @@
             </div>
         </div>
         @if ($relations->count())
-            <a href="#" style="display: block">Show All</a>
+            <a href="/friend" style="display: block">Show All</a>
         @endif
     </div>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\Category;
+use App\Models\LogActivity;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
@@ -65,6 +66,10 @@ class TopicController extends Controller
         $validatedData['user_id'] = Auth::user()->id;
 
         Topic::create($validatedData);
+        LogActivity::create([
+            'user_id' => Auth::user()->id,
+            'message' => 'Just added new topic.'
+        ]);
         Alert::success('Success', 'You\'ve Successfully added data!');
         return redirect('/topic');
     }
@@ -130,6 +135,10 @@ class TopicController extends Controller
         }
         
         Topic::where('slug', $topic->slug)->update($validatedData);
+        LogActivity::create([
+            'user_id' => Auth::user()->id,
+            'message' => 'Just edited the topic.'
+        ]);
         Alert::success('Success', 'You\'ve Successfully updated data!');
         return redirect('/topic');
     }
@@ -142,8 +151,14 @@ class TopicController extends Controller
      */
     public function destroy(Topic $topic)
     {
-        Storage::delete($topic->image);
+        if($topic->image) {
+            Storage::delete($topic->image);
+        }
         Topic::destroy($topic->id);
+        LogActivity::create([
+            'user_id' => Auth::user()->id,
+            'message' => 'Just deleted the topic.'
+        ]);
         Alert::success('Success', 'You\'ve Successfully deleted data!');
         return redirect('/topic');
     }
