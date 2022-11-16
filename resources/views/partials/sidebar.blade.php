@@ -34,6 +34,10 @@
             <span class="material-symbols-sharp">report</span>
             <h3>Reports</h3>
         </a>
+        <a href="/activity" class="{{ Request::is('activity*') ? 'active' : '' }}">
+            <span class="material-symbols-sharp">work_history</span>
+            <h3>Log Activity</h3>
+        </a>
         <a href="/settings" class="{{ Request::is('settings*') ? 'active' : '' }}">
             <span class="material-symbols-sharp">settings</span>
             <h3>Settings</h3>

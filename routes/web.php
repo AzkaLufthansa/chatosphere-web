@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FriendController;
+use App\Http\Controllers\LogActivityController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SettingController;
@@ -42,13 +43,14 @@ Route::middleware(['auth'])->group(function () {
         ]);
     });
     
-    Route::resource('topic', TopicController::class);
     Route::get('/topic/checkSlug', [TopicController::class, 'checkSlug']);
+    Route::resource('topic', TopicController::class);
     
     Route::resource('user', UserController::class);
     Route::resource('category', CategoryController::class)->except(['show']);
     Route::resource('friend', FriendController::class)->except(['show']);
     Route::resource('report', ReportController::class)->except(['create', 'store', 'show', 'edit', 'update']);
+    Route::resource('activity', LogActivityController::class);
  
     Route::get('/settings', [SettingController::class, 'index']);
     Route::post('/update_password', [SettingController::class, 'update_password']);

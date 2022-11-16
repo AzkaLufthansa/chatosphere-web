@@ -26,6 +26,7 @@ class SettingController extends Controller
         ]);
 
         if(!Hash::check($request->current_password, auth()->user()->password)) {
+            Alert::error('Failed', 'Your current password doesn\'t match our record');
             return back();
         }
         
