@@ -81,8 +81,8 @@
                             <div>{{ $user->topics->count() }}</div>
                         </div>
                         <div class="row">
-                            <h4><a href="#">Comment Posted</a></h4>
-                            <div>Coming soon..</div>
+                            <h4><a href="/comment?user={{ $user->username }}">Comment Posted</a></h4>
+                            <div>{{ $user->comments->count() }}.</div>
                         </div>
                     </div>
                 </div>

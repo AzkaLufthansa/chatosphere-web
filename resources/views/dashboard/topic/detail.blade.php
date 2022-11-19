@@ -34,6 +34,40 @@
                 <div style="margin-top: 1.7rem"><img src="{{ asset('storage/' . $topic->image) }}" class="topic-image""></div>
             @endif
             <p class="topic-content" style="margin-top: 1.7rem">{!! $topic->content !!}</p>
+
+            <hr style="border: 1px solid #e5e5e7; margin: 2rem 0 2rem 0">
+
+            <div>
+                <h3 style="margin-bottom: 1rem;">Post Comment</h3>
+                <form action="" method="POST">
+                    @csrf
+                    <input type="hidden" name="parent" value="0">
+                    <textarea name="content" id="content" rows="4" class="input-form"></textarea>
+                    <div style="display: flex; justify-content: end; margin-top: 1rem;">
+                        <button type="submit" class="add-button">Post Comment</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="form-card" style="margin-top: 1rem">
+            <h3 style="margin-bottom: 1rem">Comment</h3>
+            @foreach ($comments as $item)
+                <div class="user-comment">
+                    <div>
+                        @if ($item->user->image)
+                            <img src="{{ asset('storage/' . $item->user->image) }}" class="profile-photo">
+                        @else                            
+                            <img src="/images/default_profile.png" class="profile-photo">
+                        @endif
+                    </div>
+                    <div>
+                        <div><a href="/user/{{ $item->user->id }}" style="font-weight: 700">{{ $item->user->name }}</a> {{ $item->content }}</div>
+                        <div class="text-muted">{{ $item->created_at->diffForHumans() }}</div>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection

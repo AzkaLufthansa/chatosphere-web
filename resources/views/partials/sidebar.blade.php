@@ -30,6 +30,10 @@
             <span class="material-symbols-sharp">category</span>
             <h3>Category</h3>
         </a>
+        <a href="/comment" class="{{ Request::is('comment*') ? 'active' : '' }}">
+            <span class="material-symbols-sharp">comment</span>
+            <h3>Comment</h3>
+        </a>
         <a href="/report" class="{{ Request::is('report*') ? 'active' : '' }}">
             <span class="material-symbols-sharp">report</span>
             <h3>Reports</h3>

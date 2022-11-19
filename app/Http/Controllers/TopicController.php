@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\LogActivity;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -84,7 +85,8 @@ class TopicController extends Controller
     {
         return view('dashboard.topic.detail', [
             'title' => 'Detail Topic',
-            'topic' => $topic
+            'topic' => $topic,
+            'comments' => Comment::with(['topic', 'user'])->latest()->where('topic_id', $topic->id)->get()
         ]);
     }
 
@@ -167,5 +169,20 @@ class TopicController extends Controller
     {
         $slug = SlugService::createSlug(Topic::class, 'slug', $request->title);
         return response()->json(['slug' => $slug]);
+    }
+
+    public function post_comment(Request $request, Topic $topic)
+    {
+        $validatedData = $request->validate([
+            'content' => 'required'
+        ]);
+
+        $validatedData['user_id'] = Auth::user()->id;
+        $validatedData['topic_id'] = $topic->id;
+        $validatedData['parent'] = $request->parent;
+
+        Comment::create($validatedData);
+        // Alert::success('Success', 'Comment posted!');
+        return back();
     }
 }
